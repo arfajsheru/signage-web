@@ -79,7 +79,7 @@ export default function Stack({
   };
 
   return (
-    <div className="relative w-64 h-80 md:w-105 md:h-126 perspective-[600px]">
+    <div className="relative w-72 h-80 md:w-105 md:h-126 perspective-[600px]">
       {stack.map((card, index) => {
         const randomRotate = randomRotation ? Math.random() * 10 - 5 : 0;
 

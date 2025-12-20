@@ -18,58 +18,98 @@ const item = {
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-background">
-      {/* Background */}
+    <section className="relative w-full bg-background overflow-hidden">
+      {/* BACKGROUND */}
       <div className="absolute inset-0 z-0">
         <DotBackgroundDemo />
       </div>
 
-      {/* Content */}
+      {/* CONTENT */}
       <motion.div
         variants={container}
         initial="hidden"
         animate="visible"
         className="
           relative z-10
-          h-screen
+          w-full
           px-4 sm:px-6 lg:px-14
-          pt-16
-          flex items-center
+          pt-24 pb-16
+          h-screen
+          md:pt-0 md:pb-0
+          min-h-screen
+          flex md:items-center
         "
       >
-        <div className="grid grid-cols-1 h-full md:grid-cols-5  w-full items-center">
-          {/* LEFT */}
-          <div className="md:col-span-3 text-center md:text-left  h-full flex flex-col justify-center items-start">
+        <div
+          className="
+            w-full
+            grid grid-cols-2
+            gap-6
+            md:grid-cols-5 md:gap-14
+            items-center 
+          "
+        >
+          {/* LEFT CONTENT */}
+
+          <div
+            className="
+    col-span-2
+    md:col-span-3
+    flex flex-col
+    h-full
+    justify-center
+    gap-6
+    items-start
+    text-left
+    pr-2 md:pr-8
+  "
+          >
+            {/* BADGE */}
             <motion.div
               variants={item}
-              className="mb-4 mx-auto md:mx-0 w-fit inline-flex items-center gap-2 px-3 border-primary py-1 rounded-full border"
+              className="mb-6 mx-auto md:mx-0 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary"
             >
-              <span className="text-sm font-medium relative z-10 flex items-center justify-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-primary"></div>
+              <span className="flex items-center gap-2 text-xs sm:text-sm font-medium">
+                <span className="h-2 w-2 rounded-full bg-primary" />
                 We Make Product Not Project
               </span>
             </motion.div>
 
+            {/* HEADING */}
             <motion.h1
               variants={item}
-              className="text-2xl text-start  md:text-6xl font-bold text-foreground"
+              className="
+      w-full
+      text-xl sm:text-2xl
+      md:text-5xl
+      font-bold 
+      text-foreground
+      
+    "
             >
-              Build a Strong Brand With Professional Sign Boards
+              Build a Brand People Notice With Professional Sign Boards
             </motion.h1>
 
+            {/* DESCRIPTION */}
             <motion.p
               variants={item}
-              className="mt-4 text-start  text-xs md:text-lg text-foreground/70 line-clamp-3"
+              className="
+   
+      text-sm
+      md:text-lg
+      text-foreground/70
+      leading-relaxed
+     
+    "
             >
-              We create high-quality LED sign boards and branding solutions that
-              help your business look professional, visible, and trustworthy.
-              From design to installation, we handle everything.
+              We design and manufacture premium LED sign boards and complete
+              branding solutions that make your business stand out, attract
+              attention, and build instant trust. From concept and fabrication
+              to final installation, we manage the entire process end-to-end.
             </motion.p>
 
-            <motion.div
-              variants={item}
-              className="mt-6  flex justify-center md:justify-start"
-            >
+            {/* CTA */}
+            <motion.div variants={item} className=" w-full">
               <ButtonGradienat
                 text="Learn More"
                 icon={<ArrowRight size={16} />}
@@ -78,10 +118,13 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* RIGHT */}
+          {/* RIGHT STACK */}
           <motion.div
             variants={item}
-            className="md:col-span-2 flex justify-center items-center  h-full"
+            className="
+              col-span-2 md:col-span-2
+              flex justify-center h-full
+            "
           >
             <Stack />
           </motion.div>
