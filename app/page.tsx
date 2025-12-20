@@ -1,11 +1,11 @@
+import Header from "@/components/Header";
 import Hero from "@/components/home/Hero";
 
-const page = () => {
+export default function Page() {
   return (
-    <main className="w-full px-16">
+    <main className="relative">
+      <Header />
       <Hero />
     </main>
   );
-};
-
-export default page;
+}

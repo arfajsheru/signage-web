@@ -41,7 +41,6 @@ export default function RootLayout({
       <body
         className={`${fontTitle.variable} ${fontHeading.variable} ${fontBody.variable} antialiased`}
       >
-        <Header />
         {children}
       </body>
     </html>

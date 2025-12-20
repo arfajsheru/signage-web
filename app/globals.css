@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ===============================
-   THEME TOKENS (MINIMAL)
+   THEME TOKENS (CLEAN & STRONG)
 ================================ */
 @theme inline {
   --font-title: system-ui, sans-serif;
@@ -12,48 +12,60 @@
   --font-body: system-ui, sans-serif;
 
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
 
+  /* TEXT SYSTEM */
+  
+
+  --color-subtle-foreground: var(--text-subtle);
+
+  /* BRAND */
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
 
+  /* UI */
   --color-border: var(--border);
   --color-ring: var(--ring);
 
   --radius-md: var(--radius);
+
+  --color-foreground: var(--text-primary);
+  --color-primary: var(--primary);
 }
 
 /* ===============================
-   LIGHT MODE (SOFT BLACK)
+   GLOBAL (DARK-FIRST DESIGN)
 ================================ */
 :root {
   --radius: 0.625rem;
 
-  /* 🖤 Soft black background */
-  --background: #111827;   /* slate-900 */
-  --foreground: #e5e7eb;   /* light gray text */
+  /* 🖤 BACKGROUND */
+  --background: #020617;
 
-  /* ✅ BRAND PRIMARY */
+  /* 📝 TEXT COLORS (3 LEVELS) */
+  --text-primary: #f8fafc; /* headings / main text */
+  --text-muted: #cbd5e1; /* paragraph text */
+  --text-subtle: #94a3b8; /* captions, helper text */
+
+  /* 🔵 BRAND */
   --primary: #207cd8;
   --primary-foreground: #ffffff;
 
-  --border: #1f2937;       /* subtle borders */
+  /* UI */
+  --border: #1e293b;
   --ring: #207cd8;
 }
 
-/* ===============================
-   DARK MODE (DEEP BLACK)
-================================ */
+/* Dark mode SAME (intentional) */
 .dark {
-  /* 🖤 Deep black background */
-  --background: #020617;   /* near-black */
-  --foreground: #f8fafc;   /* near-white text */
+  --background: #020617;
+  --text-primary: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-subtle: #94a3b8;
 
-  /* SAME BRAND COLOR */
   --primary: #207cd8;
   --primary-foreground: #ffffff;
 
-  --border: #0f172a;
+  --border: #1e293b;
   --ring: #207cd8;
 }
 
@@ -66,45 +78,29 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
   }
 }
 
 /* ===============================
    TYPOGRAPHY
 ================================ */
-body {
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.6;
-}
-
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+  color: var(--text-primary);
   font-family: var(--font-heading);
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 p {
   margin-bottom: 0.75rem;
-}
-
-/* ===============================
-   UTILITIES
-================================ */
-.text-title {
-  font-family: var(--font-title);
-}
-
-.text-heading {
-  font-family: var(--font-heading);
-}
-
-.text-body {
-  font-family: var(--font-body);
 }

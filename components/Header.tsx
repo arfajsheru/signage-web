@@ -4,20 +4,26 @@ import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  Package,
+  FolderKanban,
+  Info,
+  ShoppingBag,
+  Phone,
+  SendHorizonal,
+} from "lucide-react";
+import { ButtonGradienat } from "./ui/buttons";
 
-type NavItem = {
-  label: string;
-  href: string;
-};
-
-const navItems: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Products", href: "/products" },
-  { label: "Projects", href: "/projects" },
-  { label: "About", href: "/about" },
-  { label: "Shop", href: "/shop" },
-  { label: "Contact", href: "/contact" },
+const navItems = [
+  { label: "Home", href: "/", icon: Home },
+  { label: "Products", href: "/products", icon: Package },
+  { label: "Projects", href: "/projects", icon: FolderKanban },
+  { label: "About", href: "/about", icon: Info },
+  { label: "Shop", href: "/shop", icon: ShoppingBag },
+  { label: "Contact", href: "/contact", icon: Phone },
 ];
 
 export default function Header() {
@@ -29,20 +35,20 @@ export default function Header() {
       {/* ================= HEADER ================= */}
       <header
         className="
-  sticky top-0 z-30
-  w-full bg-background
-  
-"
+          fixed top-0 left-0 w-full z-50
+        transparent
+          
+        "
       >
-        <div className="px-16 py-4 flex items-center justify-between">
-          {/* Brand */}
-          <h1 className="text-xl font-bold tracking-wide text-foreground font-title">
+        <div className="px-4 md:px-16 py-4 flex items-center justify-between">
+          {/* BRAND */}
+          <h1 className="text-xl font-bold tracking-wide font-title text-foreground">
             Sheru Group
           </h1>
 
-          {/* Desktop Navigation */}
+          {/* DESKTOP NAV */}
           <nav className="hidden md:block">
-            <ul className="flex items-center gap-8 text-md">
+            <ul className="flex items-center gap-8">
               {navItems.map(({ label, href }) => {
                 const isActive = pathname === href;
 
@@ -51,11 +57,11 @@ export default function Header() {
                     <Link
                       href={href}
                       className={`
-                        px-1 py-1 font-medium transition-colors
+                        text-sm font-medium transition-all
                         ${
                           isActive
                             ? "text-primary"
-                            : "text-foreground/70 hover:text-foreground"
+                            : "text-foreground hover:opacity-80"
                         }
                       `}
                     >
@@ -63,7 +69,7 @@ export default function Header() {
                     </Link>
 
                     {isActive && (
-                      <span className="absolute left-0 right-0 -bottom-1 h-0.5 bg-primary rounded-full" />
+                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
                     )}
                   </li>
                 );
@@ -71,24 +77,15 @@ export default function Header() {
             </ul>
           </nav>
 
-          {/* Mobile Menu Button */}
-
-          {/* Desktop CTA */}
-          <div className="hidden md:block ml-6">
-            <Link
-              href="/contact"
-              className="
-      inline-flex items-center justify-center
-      px-4 py-2 text-md font-medium 
-      rounded-md
-      bg-primary text-primary-foreground
-      transition-opacity hover:opacity-90
-    "
-            >
-              Get Quote
-            </Link>
+          {/* DESKTOP CTA */}
+          <div className="hidden md:block">
+            <ButtonGradienat
+              text="Get Quotation"
+              icon={<SendHorizonal size={16} />}
+            />
           </div>
 
+          {/* MOBILE MENU BUTTON */}
           <button
             onClick={() => setOpen(true)}
             className="md:hidden text-foreground"
@@ -103,42 +100,41 @@ export default function Header() {
       <AnimatePresence>
         {open && (
           <>
-            {/* Backdrop */}
+            {/* BACKDROP */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 bg-black/50 z-40"
+              className="fixed inset-0 bg-black/60 z-40"
             />
 
-            {/* Drawer */}
+            {/* DRAWER */}
             <motion.aside
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 left-0 h-full w-72 bg-background z-50 border-r border-border"
+              className="
+                fixed top-0 left-0 h-full w-72
+                bg-background z-50
+                border-r border-border
+              "
             >
-              <div className="px-6 py-6 flex flex-col h-full">
-                {/* Drawer Header */}
+              <div className="p-6 flex flex-col h-full">
+                {/* HEADER */}
                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-lg font-bold text-foreground font-title">
+                  <h2 className="text-lg font-bold font-title text-foreground">
                     Sheru Group
                   </h2>
-
-                  <button
-                    onClick={() => setOpen(false)}
-                    aria-label="Close menu"
-                    className="text-foreground"
-                  >
-                    <X size={22} />
+                  <button onClick={() => setOpen(false)}>
+                    <X className="text-foreground" size={22} />
                   </button>
                 </div>
 
-                {/* Drawer Navigation */}
-                <ul className="flex flex-col gap-6 font-heading text-md">
-                  {navItems.map(({ label, href }) => {
+                {/* NAV */}
+                <ul className="flex flex-col gap-4">
+                  {navItems.map(({ label, href, icon: Icon }) => {
                     const isActive = pathname === href;
 
                     return (
@@ -147,24 +143,32 @@ export default function Header() {
                           href={href}
                           onClick={() => setOpen(false)}
                           className={`
-                            block font-medium transition-colors
+                            flex items-center gap-3
+                            px-3 py-2 rounded-md
+                            text-sm font-medium
                             ${
                               isActive
                                 ? "text-primary"
-                                : "text-foreground/80 hover:text-foreground"
+                                : "text-foreground opacity-90"
                             }
                           `}
                         >
-                          {label}
+                          <Icon size={18} />
+                          <span>{label}</span>
                         </Link>
-
-                        {isActive && (
-                          <span className="block mt-1 h-0.5 w-8 bg-primary rounded-full" />
-                        )}
                       </li>
                     );
                   })}
                 </ul>
+
+                {/* CTA */}
+                <div className="mt-auto pt-6">
+                  <ButtonGradienat
+                    text="Get Quotation"
+                    icon={<SendHorizonal size={16} />}
+                    className="w-full justify-center"
+                  />
+                </div>
               </div>
             </motion.aside>
           </>

@@ -1,98 +1,92 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import Stack from "../Stack";
+import DotBackgroundDemo from "../utils/DotBackgroundDemo";
+import { ButtonGradienat } from "../ui/buttons";
+import { ArrowRight } from "lucide-react";
 
 const container = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0 },
 };
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <section className="w-full min-h-[90vh]  flex items-center bg-background">
+    <section className="relative h-screen w-full overflow-hidden bg-background">
+      {/* Background */}
+      <div className="absolute inset-0 z-0">
+        <DotBackgroundDemo />
+      </div>
+
+      {/* Content */}
       <motion.div
         variants={container}
         initial="hidden"
         animate="visible"
-        className="w-full"
-      >
-        {/* Badge wrapper (center + top spacing) */}
-        {/* <div className="w-full flex justify-center mb-10">
-      <motion.div
-        variants={item}
         className="
-          inline-flex items-center gap-2
-          border border-border
-          rounded-full
-          px-4 py-1
-          text-sm text-foreground/80
+          relative z-10
+          h-screen
+          px-4 sm:px-6 lg:px-14
+          pt-16
+          flex items-center
         "
       >
-        <span className="w-2 h-2 rounded-full bg-primary"></span>
-        <span>We Make Product Not Project</span>
-      </motion.div>
-    </div> */}
-
-        {/* Main content stays left aligned */}
-        <div className="max-w-3xl">
-          <motion.h1
-            variants={item}
-            className="
-          text-4xl md:text-5xl lg:text-6xl
-          font-bold leading-tight
-          text-foreground
-        "
-          >
-            Build a Strong Brand
-            <br />
-            With Professional Sign Boards
-          </motion.h1>
-
-          <motion.p
-            variants={item}
-            className="
-          mt-6
-          text-base md:text-lg
-          text-foreground/70
-          leading-relaxed
-        "
-          >
-            We create high-quality LED sign boards and branding solutions that
-            help your business look professional, visible, and trustworthy. From
-            design to installation, we handle everything.
-          </motion.p>
-
-          <motion.div variants={item} className="mt-8">
-            <Link
-              href="/about"
-              className="
-            inline-flex items-center justify-center
-            px-6 py-3
-            rounded-md
-            bg-primary text-primary-foreground
-            text-base font-medium
-            transition-opacity hover:opacity-90
-          "
+        <div className="grid grid-cols-1 h-full md:grid-cols-5  w-full items-center">
+          {/* LEFT */}
+          <div className="md:col-span-3 text-center md:text-left  h-full flex flex-col justify-center items-start">
+            <motion.div
+              variants={item}
+              className="mb-4 mx-auto md:mx-0 w-fit inline-flex items-center gap-2 px-3 border-primary py-1 rounded-full border"
             >
-              Learn More
-            </Link>
+              <span className="text-sm font-medium relative z-10 flex items-center justify-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-primary"></div>
+                We Make Product Not Project
+              </span>
+            </motion.div>
+
+            <motion.h1
+              variants={item}
+              className="text-2xl text-start  md:text-6xl font-bold text-foreground"
+            >
+              Build a Strong Brand With Professional Sign Boards
+            </motion.h1>
+
+            <motion.p
+              variants={item}
+              className="mt-4 text-start  text-xs md:text-lg text-foreground/70 line-clamp-3"
+            >
+              We create high-quality LED sign boards and branding solutions that
+              help your business look professional, visible, and trustworthy.
+              From design to installation, we handle everything.
+            </motion.p>
+
+            <motion.div
+              variants={item}
+              className="mt-6  flex justify-center md:justify-start"
+            >
+              <ButtonGradienat
+                text="Learn More"
+                icon={<ArrowRight size={16} />}
+                className="w-full sm:w-auto"
+              />
+            </motion.div>
+          </div>
+
+          {/* RIGHT */}
+          <motion.div
+            variants={item}
+            className="md:col-span-2 flex justify-center items-center  h-full"
+          >
+            <Stack />
           </motion.div>
         </div>
       </motion.div>
     </section>
   );
-};
-
-export default Hero;
+}
