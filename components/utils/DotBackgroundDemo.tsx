@@ -7,15 +7,15 @@ export default function DotBackgroundDemo() {
       {/* DOT PATTERN */}
       <div
         className={cn(
-          "absolute inset-0",
+          "absolute inset-0 ",
           "[background-size:20px_20px]",
           "[background-image:radial-gradient(#d4d4d4_1px,transparent_1px)]",
           "dark:[background-image:radial-gradient(#404040_1px,transparent_1px)]"
         )}
       />
 
-      {/* FADE MASK */}
-      <div className="pointer-events-none absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_15%,black)]" />
+      {/* FADE MASK
+      <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,transparent_15%,black)]" /> */}
     </div>
   );
 }

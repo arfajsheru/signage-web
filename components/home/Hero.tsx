@@ -20,6 +20,16 @@ export default function Hero() {
   return (
     <section className="relative w-full bg-background overflow-hidden">
       {/* BACKGROUND */}
+
+      <div
+        className="
+          absolute inset-0
+          z-0
+          from-primary/10
+          via-background
+          to-secondary/10
+        "
+      />
       <div className="absolute inset-0 z-0">
         <DotBackgroundDemo />
       </div>
@@ -33,41 +43,57 @@ export default function Hero() {
           relative z-10
           w-full
           px-4 sm:px-6 lg:px-14
-          pt-24 pb-16
-          h-screen
-          md:pt-0 md:pb-0
-          min-h-screen
-          flex md:items-center
+          
+          min-h-screen flex md:items-center
+          
         "
       >
         <div
           className="
             w-full
             grid grid-cols-2
-            gap-6
+            gap-12
             md:grid-cols-5 md:gap-14
-            items-center 
+            
+            
+            md:items-center
+           
           "
         >
-          {/* LEFT CONTENT */}
-
-          <div
+          {/* RIGHT STACK (TOP ON MOBILE, RIGHT ON DESKTOP) */}
+          <motion.div
+            variants={item}
             className="
-    col-span-2
-    md:col-span-3
-    flex flex-col
-    h-full
-    justify-center
-    gap-6
-    items-start
-    text-left
-    pr-2 md:pr-8
-  "
+         
+          
+              order-1 md:order-2
+              col-span-2 md:col-span-2
+              flex justify-center items-end
+            "
+          >
+            <Stack />
+          </motion.div>
+
+          {/* LEFT CONTENT */}
+          <div
+            className="h-full
+              order-2 md:order-1
+              col-span-2 md:col-span-3
+              flex flex-col
+              justify-start
+              md:justify-end 
+              gap-1 md:gap-3
+              items-start
+              text-left
+
+              
+              
+            "
           >
             {/* BADGE */}
             <motion.div
               variants={item}
-              className="mb-6 mx-auto md:mx-0 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary"
+              className="mb-6 mx-auto md:mx-0 inline-flex bg-background items-center gap-2 px-3 py-1 rounded-full border border-primary"
             >
               <span className="flex items-center gap-2 text-xs sm:text-sm font-medium">
                 <span className="h-2 w-2 rounded-full bg-primary" />
@@ -76,40 +102,39 @@ export default function Hero() {
             </motion.div>
 
             {/* HEADING */}
-            <motion.h1
-              variants={item}
-              className="
-      w-full
-      text-xl sm:text-2xl
-      md:text-5xl
-      font-bold 
-      text-foreground
-      
-    "
-            >
-              Build a Brand People Notice With Professional Sign Boards
-            </motion.h1>
+            <div className="flex flex-col gap-4">
+              <motion.h1
+                variants={item}
+                className="
+                w-full
+                text-2xl sm:text-2xl
+                md:text-5xl
+                font-bold
+                text-foreground
+              "
+              >
+                Build a Brand People Notice With Professional Sign Boards
+              </motion.h1>
 
-            {/* DESCRIPTION */}
-            <motion.p
-              variants={item}
-              className="
-   
-      text-sm
-      md:text-lg
-      text-foreground/70
-      leading-relaxed
-     
-    "
-            >
-              We design and manufacture premium LED sign boards and complete
-              branding solutions that make your business stand out, attract
-              attention, and build instant trust. From concept and fabrication
-              to final installation, we manage the entire process end-to-end.
-            </motion.p>
+              {/* DESCRIPTION */}
+              <motion.p
+                variants={item}
+                className="
+                text-sm
+                md:text-lg
+                text-foreground
+                leading-relaxed
+              "
+              >
+                We design and manufacture premium LED sign boards and complete
+                branding solutions that make your business stand out, attract
+                attention, and build instant trust. From concept and fabrication
+                to final installation, we manage the entire process end-to-end.
+              </motion.p>
+            </div>
 
             {/* CTA */}
-            <motion.div variants={item} className=" w-full">
+            <motion.div variants={item} className="w-full">
               <ButtonGradienat
                 text="Learn More"
                 icon={<ArrowRight size={16} />}
@@ -117,17 +142,6 @@ export default function Hero() {
               />
             </motion.div>
           </div>
-
-          {/* RIGHT STACK */}
-          <motion.div
-            variants={item}
-            className="
-              col-span-2 md:col-span-2
-              flex justify-center h-full
-            "
-          >
-            <Stack />
-          </motion.div>
         </div>
       </motion.div>
     </section>

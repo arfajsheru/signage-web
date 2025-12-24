@@ -35,12 +35,14 @@ export default function Header() {
       {/* ================= HEADER ================= */}
       <header
         className="
-          fixed top-0 left-0 w-full z-50
+          fixed left-0 top-4 right-0 w-[90%] mx-auto z-50
         transparent
-          
+         border rounded-full
+      
+         backdrop-blur-xs
         "
       >
-        <div className="px-4 md:px-16 py-4 flex items-center justify-between">
+        <div className="px-4 md:px-16 py-4 md:py-2  flex items-center justify-between">
           {/* BRAND */}
           <h1 className="text-xl font-bold tracking-wide font-title text-foreground">
             Sheru Group
@@ -106,7 +108,7 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 bg-black/60 z-40"
+              className="fixed inset-0 border z-40"
             />
 
             {/* DRAWER */}

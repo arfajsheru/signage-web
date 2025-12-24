@@ -5,8 +5,8 @@ import { useState } from "react";
 import Image from "next/image";
 
 import heroImage1 from "../assets/heroImage1.png";
-import heroImage2 from "../assets/heroImage2.png"
-import heroImage3 from "../assets/heroImage3.png"
+import heroImage2 from "../assets/heroImage2.png";
+import heroImage3 from "../assets/heroImage3.png";
 /* ✅ TEMP DATA (REUSING SAME IMAGE FOR NOW) */
 const SIGNAGE_CARDS = [
   { id: 1, image: heroImage1 },
